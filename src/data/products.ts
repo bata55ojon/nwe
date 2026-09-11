@@ -37,7 +37,7 @@ const names = [
 
 const prices = [
   35.99, 40.99, 49.99, 55.99, 45.99, 50.99, 60.50, 75.99, 49.49, 24.99,
-  50.59, 75.99, 45.99, 50.49, 34.99, 70.99, 39.99, 42.50, 44.99, 47.99,
+  50.59, 65.99, 45.99, 50.49, 34.99, 70.99, 39.99, 42.50, 44.99, 47.99,
   49.99, 45.99, 55.99, 64.99, 79.99,
 ];
 
@@ -85,7 +85,7 @@ products[0]!.subProducts = Array.from({ length: 10 }, (_, i) => ({
 
 export const getProduct = (id: string) => products.find((p) => p.id === id);
 
-export const TELEGRAM_USER = "megastuffrs";
+export const TELEGRAM_USER = "Fullfolderselrr";
 export const TELEGRAM_URL = `https://t.me/${TELEGRAM_USER}`;
 
 export const telegramCheckoutUrl = (
