@@ -28,22 +28,24 @@ const productVideo = (i: number): string =>
   i >= 1 && i <= 24 ? `/videos/p${i}.mp4` : "";
 
 const names = [
-  "Digital Pack 1", "Digital Pack 2", "Digital Pack 3", "Digital Pack 4", "Digital Pack 5",
-  "Digital Pack 6", "Digital Pack 7", "Digital Pack 8", "Digital Pack 9", "Digital Pack 10",
-  "Digital Pack 11", "Digital Pack 12", "Digital Pack 13", "Digital Pack 14", "Digital Pack 15",
-  "Digital Pack 16", "Digital Pack 17", "Digital Pack 18", "Digital Pack 19", "Digital Pack 20",
-  "Digital Pack 21", "Digital Pack 22", "Digital Pack 23", "Digital Pack 24", "VIP Digital Bundle",
+  "CP", "Teens And Pets", "Young teens 9-17", "Rape", "SISTER AND BRO",
+  "MOM AND SON", "BLACK CP", "TEENS JAPANESE 7-17", "FULL CO GAY", "INCEST FULL",
+  "SNAPGOD", "DARKZADIE", "IVANKA AND BRO", "IZZY AND BROTHER", "BLACKMAIL",
+  "HIGH SCHOOL YOUNG", "ANXIOUS PANDA", "OMEGLE", "MONKEY APP", "SAVANNAH",
+  "GAY PORN", "FATHER AND SON", "TEENS LATINA", "LIZZY", "GROUP VIP",
 ];
 
 const prices = [
-  75.99, 50.99, 120.99, 55.99, 45.99, 50.99, 60.50, 75.99, 49.49, 24.99,
-  80.59, 75.99, 45.99, 50.49, 34.99, 70.99, 39.99, 42.50, 44.99, 47.99,
-  49.99, 54.99, 59.99, 64.99, 79.99,
+  35.99, 40.99, 49.99, 55.99, 45.99, 50.99, 60.50, 75.99, 49.49, 24.99,
+  50.59, 75.99, 45.99, 50.49, 34.99, 70.99, 39.99, 42.50, 44.99, 47.99,
+  49.99, 45.99, 55.99, 64.99, 79.99,
 ];
 
 const descriptions = names.map((_, i) =>
-  i === 24
-    ? "A complete VIP digital bundle."
+  i === 0
+    ? "CLICK HERE TO SEE A LIST O ALL CP"
+    : i === 24
+    ? "GROUP VIP FULL VIDEO."
     : "A digital collection with organized content and regular updates."
 );
 
@@ -57,12 +59,26 @@ export const products: Product[] = names.map((name, i) => ({
   poster: covers[i] ?? "",
 }));
 
+// Lista de nomes exclusivos para os subprodutos do primeiro item
+const subProductNames = [
+  "CP — 1",
+  "CP — 2",
+  "CP — 3",
+  "CP — 4",
+  "CP — 5 HD",
+  "CP — LESBIAN",
+  "CP — BRO AND SIS",
+  "CP — SP",
+  "CP — MIO PRI",
+  "CP — XXX2021",
+];
+
 products[0]!.subProducts = Array.from({ length: 10 }, (_, i) => ({
   id: `p1-${i + 1}`,
   code: `p1-${i + 1}`,
-  name: `Digital Pack 1-${i + 1}`,
-  price: [35.99, 30.49, 35.99, 30.49, 50.49, 45.99, 45.99, 35.49, 40.99, 90.49][i]!,
-  description: `Part of Digital Pack 1 — individual item ${i + 1} of 10.`,
+  name: subProductNames[i]!,
+  price: [35.99, 30.49, 35.99, 30.49, 20.49, 45.99, 15.99, 35.49, 40.99, 30.49][i]!,
+  description: `${subProductNames[i]} — item individual ${i + 1} de 10 do Omegle 1.`,
   video: products[0]!.video,
   poster: products[0]!.poster,
 }));
