@@ -3,6 +3,7 @@ import { Menu, X, Flame } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/site/LanguageSwitcher";
+import { CurrencySelector } from "@/components/site/CurrencySelector";
 import { useI18n } from "@/i18n";
 
 export function Header() {
@@ -28,6 +29,7 @@ export function Header() {
 
         <div className="flex items-center gap-2">
           <LanguageSwitcher />
+          <CurrencySelector />
           <nav className="hidden items-center gap-1 md:flex">
             {links.map((l) => (
               <Link
