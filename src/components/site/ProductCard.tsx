@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { VideoOverlay } from "@/components/site/VideoOverlay";
 import { BundleDialog } from "@/components/site/BundleDialog";
 import { useI18n } from "@/i18n";
+import { useCurrency } from "@/CurrencyContext";
 import type { Product } from "@/data/products";
 
 export function ProductCard({
@@ -13,6 +14,7 @@ export function ProductCard({
   onBuy: (product: Product) => void;
 }) {
   const { t } = useI18n();
+  const { formatPrice } = useCurrency();
   const [bundleOpen, setBundleOpen] = useState(false);
   const hasBundle = (product.subProducts?.length ?? 0) > 0;
 
@@ -55,7 +57,7 @@ export function ProductCard({
         </p>
         <div className="mt-auto flex items-center justify-between gap-3 pt-2">
           <span className="text-xl font-extrabold text-primary">
-            ${product.price.toFixed(2)}
+            {formatPrice(product.price)}
           </span>
           <Button size="sm" onClick={handleClick}>
             {t("buyNow")}
