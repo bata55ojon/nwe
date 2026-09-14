@@ -7,12 +7,13 @@ import {
   type ReactNode,
 } from "react";
 
-export type Lang = "en" | "pt" | "ar";
+export type Lang = "en" | "pt" | "ar" | "es";
 
 export const languages: { code: Lang; label: string; flag: string }[] = [
   { code: "en", label: "English", flag: "🇬🇧" },
   { code: "pt", label: "Português", flag: "🇵🇹" },
   { code: "ar", label: "العربية", flag: "🇸🇦" },
+  { code: "es", label: "Español", flag: "🇪🇸" },
 ];
 
 const dict = {
@@ -101,6 +102,36 @@ const dict = {
     featMobileTitle: "متوافق مع الجوال",
     featMobileText: "الوصول من أي جهاز.",
     language: "اللغة",
+  },
+  es: {
+    home: "Inicio",
+    products: "Productos",
+    contact: "Contacto",
+    viewCollection: "Ver Colección",
+    heroBadge: "25 lanzamientos premium disponibles ahora",
+    heroTitle: "Contenido Digital Premium",
+    heroSubtitle:
+      "Descubra nuestra colección exclusiva de productos digitales premium.",
+    secure: "Seguro",
+    instant: "Acceso Inmediato",
+    premium: "Contenido Premium",
+    ourProducts: "Nuestros Productos",
+    ourProductsSub:
+      "Elija su producto digital premium — todos los 25 en un solo lugar.",
+    searchPlaceholder: "Buscar productos...",
+    noResults: "No tenemos ese paquete — pero tenemos unos mejores:",
+    buyNow: "Comprar Ahora",
+    ctaTitle: "¿Listo para empezar?",
+    ctaText:
+      "Elija su producto premium favorito y contáctenos para completar su pedido.",
+    featFastTitle: "Rápido",
+    featFastText: "Acceso rápido después de completar su pedido.",
+    featSecureText: "Experiencia de pago segura y privada.",
+    featPremiumTitle: "Premium",
+    featPremiumText: "Productos digitales de alta calidad.",
+    featMobileTitle: "Compatible con Móviles",
+    featMobileText: "Acceso desde cualquier dispositivo.",
+    language: "Idioma",
   },
 } as const;
 
