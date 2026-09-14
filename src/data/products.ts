@@ -123,8 +123,3 @@ export const telegramCheckoutUrl = (
 
   return `${TELEGRAM_URL}?text=${encodeURIComponent(texts[lang] ?? texts.en)}`;
 };
-
-// Mantenha aqui a sua lista original de produtos (exemplo):
-export const products: Product[] = [
-  // ... seus produtos permanecem aqui ...
-];
