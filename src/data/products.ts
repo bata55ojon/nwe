@@ -102,14 +102,14 @@ export const getProduct = (id: string) => products.find((p) => p.id === id);
 export const telegramCheckoutUrl = (
   product: Product,
   method?: string | null,
-  lang: "en" | "pt" | "ar" = "en",
+  lang: "en" | "pt" | "ar" | "es" = "en",
 ): string => {
   const price = `$${product.price.toFixed(2)}`;
   const ref = `[${product.code}] ${product.name}`;
 
   const isAsking = !method || method === "Perguntar Formas de Pagamento";
 
-  const texts: Record<"en" | "pt" | "ar", string> = {
+  const texts: Record<"en" | "pt" | "ar" | "es", string> = {
     en: isAsking
       ? `Hello, I want to buy ${ref} for ${price}. What payment methods do you accept?`
       : `Hello, I want to buy ${ref} for ${price}. Payment method: ${method}.`,
@@ -119,6 +119,9 @@ export const telegramCheckoutUrl = (
     ar: isAsking
       ? `مرحبًا، أريد شراء ${ref} بسعر ${price}. ما هي طرق الدفع المتاحة؟`
       : `مرحبًا، أريد شراء ${ref} بسعر ${price}. طريقة الدفع: ${method}.`,
+    es: isAsking
+      ? `Hola, quiero comprar ${ref} por ${price}. ¿Cuáles son los métodos de pago disponibles?`
+      : `Hola, quiero comprar ${ref} por ${price}. Método de pago: ${method}.`,
   };
 
   return `${TELEGRAM_URL}?text=${encodeURIComponent(texts[lang] ?? texts.en)}`;
