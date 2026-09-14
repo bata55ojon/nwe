@@ -20,17 +20,14 @@ export function BuyNowDialog({
   const { lang } = useI18n();
 
   return (
-    <Dialog
-      open={!!product}
-      onOpenChange={onOpenChange}
-    >
+    <Dialog open={!!product} onOpenChange={onOpenChange}>
       <DialogContent className="max-h-[90dvh] overflow-y-auto rounded-2xl border-border bg-popover sm:max-w-lg">
         <DialogHeader>
           <DialogTitle className="font-display text-xl">
-            Finalizar Pedido
+            Checkout
           </DialogTitle>
           <DialogDescription>
-            O atendimento e as formas de pagamento são combinados diretamente com a nossa equipe no Telegram.
+            Contact our team on Telegram to ask about available payment methods and complete your order.
           </DialogDescription>
         </DialogHeader>
 
@@ -39,11 +36,11 @@ export function BuyNowDialog({
             <div className="space-y-4 rounded-2xl border border-primary/40 bg-gradient-card p-4 shadow-glow">
               <dl className="space-y-2 text-sm">
                 <div className="flex justify-between gap-3">
-                  <dt className="text-muted-foreground">Produto</dt>
+                  <dt className="text-muted-foreground">Product</dt>
                   <dd className="truncate font-medium">{product.name}</dd>
                 </div>
                 <div className="flex justify-between gap-3">
-                  <dt className="text-muted-foreground">Preço</dt>
+                  <dt className="text-muted-foreground">Price</dt>
                   <dd className="font-medium text-primary">
                     ${product.price.toFixed(2)}
                   </dd>
@@ -57,12 +54,12 @@ export function BuyNowDialog({
                   rel="noopener noreferrer"
                 >
                   <Send className="size-4" />
-                  Continuar no Telegram
+                  Continue on Telegram
                 </a>
               </Button>
 
               <p className="text-center text-[11px] text-muted-foreground">
-                Nenhum pagamento é processado neste site.
+                No payment is processed on this site.
               </p>
             </div>
           </div>
