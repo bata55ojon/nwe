@@ -82,6 +82,23 @@ products[0]!.subProducts = Array.from({ length: 10 }, (_, i) => ({
   video: products[0]!.video,
   poster: products[0]!.poster,
 }));
+export interface Product {
+  id: string;
+  code: string;
+  name: string;
+  description: string;
+  price: number;
+  badge?: string;
+  category: string;
+  image?: string;
+}
+
+export const TELEGRAM_USER = "Fullfolderselrr";
+export const TELEGRAM_URL = `https://t.me/${TELEGRAM_USER}`;
+
+// Função que estava faltando e causou o erro:
+export const getProduct = (id: string) => products.find((p) => p.id === id);
+
 export const telegramCheckoutUrl = (
   product: Product,
   method?: string | null,
@@ -90,7 +107,6 @@ export const telegramCheckoutUrl = (
   const price = `$${product.price.toFixed(2)}`;
   const ref = `[${product.code}] ${product.name}`;
 
-  // Se não selecionar método ou for o botão direto do Telegram
   const isAsking = !method || method === "Perguntar Formas de Pagamento";
 
   const texts: Record<"en" | "pt" | "ar", string> = {
@@ -107,3 +123,8 @@ export const telegramCheckoutUrl = (
 
   return `${TELEGRAM_URL}?text=${encodeURIComponent(texts[lang] ?? texts.en)}`;
 };
+
+// Mantenha aqui a sua lista original de produtos (exemplo):
+export const products: Product[] = [
+  // ... seus produtos permanecem aqui ...
+];
