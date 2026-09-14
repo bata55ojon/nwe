@@ -9,37 +9,46 @@ import {
 
 export type Currency = "USD" | "BRL";
 
-export const currencies = {
+export const currencies: Record<Currency, { code: Currency; symbol: string; rate: number }> = {
   USD: { code: "USD", symbol: "$", rate: 1 },
-  BRL: { code: "BRL", symbol: "R$", rate: 3.0 }, // 1 USD = 3 BRL
+  BRL: { code: "BRL", symbol: "R$", rate: 3.0 },
 };
 
-const CurrencyContext = createContext({
-  currency: "USD" as Currency,
-  setCurrency: (c: Currency) => {},
-  formatPrice: (price: number) => `$${price.toFixed(2)}`,
+const CurrencyContext = createContext<{
+  currency: Currency;
+  setCurrency: (c: Currency) => void;
+  formatPrice: (priceInUSD: number) => string;
+}>({
+  currency: "USD",
+  setCurrency: () => {},
+  formatPrice: (price) => `$${price.toFixed(2)}`,
 });
 
+const STORAGE_KEY = "hotshop-currency";
+
 export function CurrencyProvider({ children }: { children: ReactNode }) {
-  const [currency, setCurrency] = useState<Currency>("USD");
+  const [currency, setCurrencyState] = useState<Currency>("USD");
 
   useEffect(() => {
-    const saved = localStorage.getItem("hotshop-currency") as Currency;
-    if (saved && saved in currencies) setCurrency(saved);
+    const saved = localStorage.getItem(STORAGE_KEY) as Currency | null;
+    if (saved && (saved === "USD" || saved === "BRL")) {
+      setCurrencyState(saved);
+    }
   }, []);
 
   const value = useMemo(() => {
-    return {
-      currency,
-      setCurrency: (c: Currency) => {
-        setCurrency(c);
-        localStorage.setItem("hotshop-currency", c);
-      },
-      formatPrice: (priceInUSD: number) => {
-        const details = currencies[currency];
-        return `${details.symbol}${(priceInUSD * details.rate).toFixed(2)}`;
-      },
+    const setCurrency = (c: Currency) => {
+      setCurrencyState(c);
+      localStorage.setItem(STORAGE_KEY, c);
     };
+
+    const formatPrice = (priceInUSD: number) => {
+      const details = currencies[currency] ?? currencies.USD;
+      const converted = priceInUSD * details.rate;
+      return `${details.symbol}${converted.toFixed(2)}`;
+    };
+
+    return { currency, setCurrency, formatPrice };
   }, [currency]);
 
   return (
