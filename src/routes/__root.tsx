@@ -16,6 +16,7 @@ import { Footer } from "@/components/site/Footer";
 import { BuyProvider } from "@/components/site/BuyContext";
 import { PurchaseNotifications } from "@/components/site/PurchaseNotifications";
 import { I18nProvider } from "@/i18n";
+import { CurrencyProvider } from "@/CurrencyContext";
 
 function NotFoundComponent() {
   return (
@@ -133,17 +134,19 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <I18nProvider>
-        <BuyProvider>
-          <div className="flex min-h-screen flex-col bg-background">
-            <Header />
-            <main className="flex-1 pt-16">
-              {/* Required: nested routes render here. */}
-              <Outlet />
-            </main>
-            <Footer />
-          </div>
-          <PurchaseNotifications />
-        </BuyProvider>
+        <CurrencyProvider>
+          <BuyProvider>
+            <div className="flex min-h-screen flex-col bg-background">
+              <Header />
+              <main className="flex-1 pt-16">
+                {/* Required: nested routes render here. */}
+                <Outlet />
+              </main>
+              <Footer />
+            </div>
+            <PurchaseNotifications />
+          </BuyProvider>
+        </CurrencyProvider>
       </I18nProvider>
     </QueryClientProvider>
   );
