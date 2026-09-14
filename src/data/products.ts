@@ -82,23 +82,28 @@ products[0]!.subProducts = Array.from({ length: 10 }, (_, i) => ({
   video: products[0]!.video,
   poster: products[0]!.poster,
 }));
-
-export const getProduct = (id: string) => products.find((p) => p.id === id);
-
-export const TELEGRAM_USER = "Fullfolderselrr";
-export const TELEGRAM_URL = `https://t.me/${TELEGRAM_USER}`;
-
 export const telegramCheckoutUrl = (
   product: Product,
-  method: string,
+  method?: string | null,
   lang: "en" | "pt" | "ar" = "en",
 ): string => {
   const price = `$${product.price.toFixed(2)}`;
   const ref = `[${product.code}] ${product.name}`;
+
+  // Se não selecionar método ou for o botão direto do Telegram
+  const isAsking = !method || method === "Perguntar Formas de Pagamento";
+
   const texts: Record<"en" | "pt" | "ar", string> = {
-    en: `Hello, I want to buy ${ref} for ${price}. Payment method: ${method}.`,
-    pt: `Olá, quero comprar ${ref} por ${price}. Método de pagamento: ${method}.`,
-    ar: `مرحبًا، أريد شراء ${ref} بسعر ${price}. طريقة الدفع: ${method}.`,
+    en: isAsking
+      ? `Hello, I want to buy ${ref} for ${price}. What payment methods do you accept?`
+      : `Hello, I want to buy ${ref} for ${price}. Payment method: ${method}.`,
+    pt: isAsking
+      ? `Olá, quero comprar ${ref} por ${price}. Quais são as formas de pagamento disponíveis?`
+      : `Olá, quero comprar ${ref} por ${price}. Método de pagamento: ${method}.`,
+    ar: isAsking
+      ? `مرحبًا، أريد شراء ${ref} بسعر ${price}. ما هي طرق الدفع المتاحة؟`
+      : `مرحبًا، أريد شراء ${ref} بسعر ${price}. طريقة الدفع: ${method}.`,
   };
+
   return `${TELEGRAM_URL}?text=${encodeURIComponent(texts[lang] ?? texts.en)}`;
 };
