@@ -11,7 +11,7 @@ export type Currency = "USD" | "BRL";
 
 export const currencies = {
   USD: { code: "USD" as Currency, symbol: "$", rate: 1 },
-  BRL: { code: "BRL" as Currency, symbol: "R$", rate: 3.0 },
+  BRL: { code: "BRL" as Currency, symbol: "R$", rate: 2.5 }, // 1 USD = 2.50 BRL
 };
 
 interface CurrencyContextType {
