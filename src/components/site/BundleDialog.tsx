@@ -6,6 +6,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { useCurrency } from "@/CurrencyContext";
 import type { Product } from "@/data/products";
 
 export function BundleDialog({
@@ -17,6 +18,7 @@ export function BundleDialog({
   onOpenChange: (open: boolean) => void;
   onBuy: (product: Product) => void;
 }) {
+  const { formatPrice } = useCurrency();
   const items = product?.subProducts ?? [];
 
   return (
@@ -45,7 +47,7 @@ export function BundleDialog({
               </div>
               <div className="flex shrink-0 items-center gap-3">
                 <span className="text-base font-extrabold text-primary">
-                  ${item.price.toFixed(2)}
+                  {formatPrice(item.price)}
                 </span>
                 <Button size="sm" onClick={() => onBuy(item)}>
                   Buy Now
