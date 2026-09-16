@@ -93,7 +93,7 @@ export interface Product {
   image?: string;
 }
 
-export const TELEGRAM_USER = "Fullfolderselrr";
+export const TELEGRAM_USER = "Henillsellr";
 export const TELEGRAM_URL = `https://t.me/${TELEGRAM_USER}`;
 
 // Função que estava faltando e causou o erro:
